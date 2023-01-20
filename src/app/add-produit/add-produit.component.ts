@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Produit } from '../model/produit.model';
 import { ProduitService } from '../Service/produit.service';
 
@@ -10,13 +11,17 @@ import { ProduitService } from '../Service/produit.service';
 export class AddProduitComponent {
  
     newProduit = new Produit();
-    
-    constructor(private produitService: ProduitService) { }
+
+    constructor(
+      private router : Router,
+      private produitService: ProduitService) { }
 
 
     addProduit(){
     // console.log(this.newProduit);
     this.produitService.ajouterProduit(this.newProduit);
+
+    this.router.navigate(['produits']);
     }
 
 
