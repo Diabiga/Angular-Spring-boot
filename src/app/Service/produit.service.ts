@@ -23,6 +23,10 @@ export class ProduitService {
     return this.produits
   }
 
+
+
+
+  
   ajouterProduit( prod: Produit){
     this.produits.push(prod);
     }
@@ -41,17 +45,36 @@ export class ProduitService {
       }); */
       }
 
+      trierProduits(){
+        this.produits = this.produits.sort((n1,n2) => {
+          const id1 = n1.idProduit ? n1.idProduit : 0;
+          const id2 = n2.idProduit ? n2.idProduit : 0;
+          if (id1 < id2) {
+            return 1;
+          }
+          if (id1 > id2) {
+            return -1;
+          }
+          return 0;
+        });
+        }
+      
+
 
       consulterProduit(id:number): Produit{
         this.produit = this.produits.find(p => p.idProduit == id)!;
         return this.produit;
         }
 
-
-        updateProduit(p:Produit)
+ updateProduit(p:Produit)
 {
 // console.log(p);
     this.supprimerProduit(p);
     this.ajouterProduit(p);
+    this.trierProduits();
 }
+
+
+
+
 }
