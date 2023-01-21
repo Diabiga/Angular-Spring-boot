@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Categorie } from 'src/app/model/categorie.model';
 import { Produit } from 'src/app/model/produit.model';
 import { ProduitService } from '../produit.service';
 
@@ -10,7 +11,9 @@ import { ProduitService } from '../produit.service';
 })
 export class UpdateProduitComponent implements OnInit{
 
-
+  categories! : Categorie[];
+  newIdCat! : number;
+  newCategorie! : Categorie;
   currentProduit = new Produit();
   constructor(private activatedRoute: ActivatedRoute,
     private router :Router,
@@ -20,6 +23,11 @@ export class UpdateProduitComponent implements OnInit{
   // console.log(this.route.snapshot.params.id);
   this.currentProduit = this.produitService.consulterProduit(this.activatedRoute.snapshot. params['id']);
   console.log(this.currentProduit);
+
+  
+    this.categories = this.produitService.listeCategories();
+   
+  
   } 
 
 
