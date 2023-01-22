@@ -20,16 +20,17 @@ export class AddProduitComponent {
       private router : Router,
       private produitService: ProduitService) { }
       ngOnInit() {
-        this.categories = this.produitService.listeCategories();
+        //this.categories = this.produitService.listeCategories();
         }
         
 
-    addProduit(){
-      this.newCategorie =this.produitService.consulterCategorie(this.newIdCat);
-      this.newProduit.categorie = this.newCategorie;
-      this.produitService.ajouterProduit(this.newProduit);
-      this.router.navigate(['produits']);
-    }
+        addProduit(){
+          this.produitService.ajouterProduit(this.newProduit)
+          .subscribe(prod => {
+          console.log(prod);
+          this.router.navigate(['produits']);
+          });
+          }
 
 
 }
